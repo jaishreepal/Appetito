@@ -33,7 +33,7 @@ public class Register extends AppCompatActivity {
 
     EditText firstName;
     EditText lastName;
-    EditText email, latitude, longitude;
+    EditText email, latitude, longitude, birthday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         firstName = (EditText) findViewById(R.id.first_name);
         lastName = (EditText) findViewById(R.id.last_name);
+        birthday = (EditText) findViewById(R.id.dob);
         email = (EditText) findViewById(R.id.email);
         latitude = (EditText) findViewById(R.id.latitude);
         longitude = (EditText) findViewById(R.id.longitude);
@@ -54,6 +55,7 @@ public class Register extends AppCompatActivity {
         firstName.setText(getIntent().getStringExtra("first_name"));
         lastName.setText(getIntent().getStringExtra("last_name"));
         email.setText(getIntent().getStringExtra("email"));
+//        birthday.setText(getIntent().getStringExtra("user_birthday"));
 
         client = LocationServices.getFusedLocationProviderClient(getApplicationContext());
         longitude.setOnClickListener(new View.OnClickListener() {

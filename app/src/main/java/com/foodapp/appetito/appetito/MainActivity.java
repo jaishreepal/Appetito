@@ -1,6 +1,7 @@
 package com.foodapp.appetito.appetito;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,11 +25,14 @@ import com.facebook.login.widget.ProfilePictureView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
     CallbackManager callbackManager;
     LoginButton loginButton;
     ProfilePictureView profilePictureView;
+    Button home;
 
 
     //    TextView textView, tfirst_name, tlast_name, temail;
@@ -43,8 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         callbackManager= CallbackManager.Factory.create();
         loginButton=(LoginButton)findViewById(R.id.fb_login);
+        home=(Button)findViewById(R.id.home_button);
         loginButton.setReadPermissions("email","public_profile");//2
 //        textView=(TextView)findViewById(R.id.text);
+//        loginButton.setReadPermissions(Arrays.asList("user_birthday"));
+
         register_button=(Button) findViewById(R.id.reg_btn);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -87,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,Register.class));
             }
         });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Home.class));
+            }
+        });
     }
 
 
@@ -100,12 +114,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayUserInfo(JSONObject object)//2
     {
-        String first_name = null,last_name = null,email = null;
+        String first_name = null,last_name = null,email = null,user_birthday = null;
         ProfilePictureView profile_icon;
         try {
             first_name = object.getString("first_name");
             last_name = object.getString("last_name");
             email = object.getString("email");
+//            user_birthday = object.getString("user_birthday");
 //            profile_icon = object.getString("profile_icon");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -123,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("first_name",first_name);
         intent.putExtra("last_name", last_name);
         intent.putExtra("email",email);
+//        intent.putExtra("user_birthday", user_birthday);
+//        intent.putExtra("profile_icon", (Parcelable) profilePictureView);
         startActivity(intent);
 
     }

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Appetito</string>
+    <string name="facebook_app_id">320492055394511</string>
+    <string name="fb_login_protocol_scheme">fb320492055394511</string>
+
+</resources>

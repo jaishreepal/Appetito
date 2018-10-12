@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     //    TextView textView, tfirst_name, tlast_name, temail;
     Button register_button;
+    Button home;
     String userId;
     FacebookCallback<LoginResult> callback;
     @Override
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         callbackManager= CallbackManager.Factory.create();
         loginButton=(LoginButton)findViewById(R.id.fb_login);
+        home= (Button) findViewById(R.id.home_button);
         loginButton.setReadPermissions("email","public_profile");//2
 //        textView=(TextView)findViewById(R.id.text);
         register_button=(Button) findViewById(R.id.reg_btn);
@@ -85,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,Register.class));
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Home.class));
             }
         });
     }

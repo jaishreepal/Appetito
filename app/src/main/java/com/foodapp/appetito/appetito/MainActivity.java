@@ -1,11 +1,13 @@
 package com.foodapp.appetito.appetito;
 
 import android.content.Intent;
+import android.media.MediaCas;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.facebook.AccessToken;
@@ -21,6 +23,7 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
+import com.google.android.gms.cast.framework.Session;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,9 +36,8 @@ public class MainActivity extends AppCompatActivity {
     LoginButton loginButton;
     ProfilePictureView profilePictureView;
     Button home;
+//    Register session;
 
-
-    //    TextView textView, tfirst_name, tlast_name, temail;
     Button register_button;
     String userId;
     FacebookCallback<LoginResult> callback;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(MainActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                 userId=loginResult.getAccessToken().getUserId();
+//                session.setFblogin(true);
 //                textView.setText("Login Successful\n"+ loginResult.getAccessToken().getUserId()+"\n"+loginResult.getAccessToken().getToken());
                 GraphRequest graphRequest=GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {//2
                     @Override
@@ -72,7 +75,28 @@ public class MainActivity extends AppCompatActivity {
                 parameters.putString("fields", "first_name, last_name, email");
                 graphRequest.setParameters(parameters);
                 graphRequest.executeAsync();
+
             }
+//
+//            private void setProfile(JSONObject jsonObject) {
+//                try {
+//                    String fbgender=jsonObject.getString("gender");
+//                    String fbLocation=jsonObject.getString("location");
+//                    String fbid = jsonObject.getString("id");
+//
+//                    profilePictureView.setPresetSize(ProfilePictureView.NORMAL);
+//                    profilePictureView.setProfileId(jsonObject.getString("id"));
+//
+//                    String propic = "https://graph.facebook.com/" + fbid+ "/picture?type=large";
+//
+//                    session.setFbLogin(fbid, propic, fbLocation, fbgender);
+//
+//
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
 
             @Override
             public void onCancel() {
@@ -115,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     public void displayUserInfo(JSONObject object)//2
     {
         String first_name = null,last_name = null,email = null,user_birthday = null;
-        ProfilePictureView profile_icon;
+//        String profile_icon;
         try {
             first_name = object.getString("first_name");
             last_name = object.getString("last_name");
@@ -125,14 +149,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-//        tfirst_name=(TextView) findViewById(R.id.first_name);
-//        tlast_name=(TextView) findViewById(R.id.last_name);
-//        temail=(TextView) findViewById(R.id.email);
-//
-//        tfirst_name.setText("First name : "+ first_name);
-//        tlast_name.setText("Last name : "+last_name);
-//        temail.setText("Email id : "+email);
 
         Intent intent=new Intent(getApplicationContext(),Register.class);
         intent.putExtra("first_name",first_name);

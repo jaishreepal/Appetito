@@ -2,5 +2,29 @@
     <string name="app_name">Appetito</string>
     <string name="facebook_app_id">320492055394511</string>
     <string name="fb_login_protocol_scheme">fb320492055394511</string>
+    <string name="nav_eat">Eat</string>
+    <string name="nav_host">Host</string>
+    <string name="nav_inbox">Inbox</string>
+    <string name="nav_more">More</string>
+
+    <string-array name="foodItemsArray">
+        <item>Veg Lasagna</item>
+        <item>Biryani</item>
+        <item>Hakka Noodles</item>
+        <item>Burger</item>
+        <item>Chillie Potato</item>
+        <item>Pizza</item>
+        <item>Beverages</item>
+        <item>Veg Lasagna</item>
+        <item>Biryani</item>
+        <item>Hakka Noodles</item>
+        <item>Burger</item>
+        <item>Chillie Potato</item>
+        <item>Pizza</item>
+        <item>Beverages</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
